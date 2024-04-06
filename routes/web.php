@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CrudOperations;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('crud.index');
+})->name('index');
+
+
+Route::get('/crud/home', [CrudOperations::class, 'home'])->name('crud.home');
+
+Route::resource('/crud', CrudOperations::class)->parameters([
+    'crud' => 'post'
+]);
+// Define a POST route for crud/store
+Route::post('crud/store', [CrudOperations::class, 'store'])->name('crud.store');
