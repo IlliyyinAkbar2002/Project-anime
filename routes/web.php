@@ -22,7 +22,9 @@ Route::get('/', function () {
 Route::get('/crud/home', [CrudOperations::class, 'home'])->name('crud.home');
 
 Route::resource('/crud', CrudOperations::class)->parameters([
-    'crud' => 'post'
+    'crud' => 'anime'
 ]);
 // Define a POST route for crud/store
 Route::post('crud/store', [CrudOperations::class, 'store'])->name('crud.store');
+// Explicitly define the PUT route for the update method
+Route::put('/crud/{anime}', [CrudOperations::class, 'update'])->name('crud.update');
